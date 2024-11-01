@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 여기서 지정한 규격대로만 써야돼 -->
+<mapper namespace="com.chldbwls92.spring.ex.database.repository.UsedGoodsRepository">
+	<!-- 태그 통해서 메소드 연결! id에 메소드 이름 넣어야됨! resultType=리턴타입(한 행을 어떻게 저장할지) -->
+	<select id="selectUsedGoodsList" resultType="com.chldbwls92.spring.ex.database.domain.UsedGoods">
+	<!-- 메소드이름, 파라미터(없으면 생략), 리턴타입(위치 명확하게 지정) -->
+	
+		SELECT
+			`id`
+			, `sellerId`
+			, `title`
+			, `price`
+			, `description`
+			, `image`
+			, `createdAt`
+			, `updatedAt`
+		FROM
+			`used_goods`;
+	</select>
+
+</mapper>
