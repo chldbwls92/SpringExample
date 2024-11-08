@@ -1,11 +1,11 @@
 package com.chldbwls92.spring.ex.database.repository;
 
+
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
 import com.chldbwls92.spring.ex.database.domain.UsedGoods;
-
 // 데이터베이스 관련 처리
 // Mybatis Framework	데이터베이스만을 다루는 것
 @Mapper // mark up language

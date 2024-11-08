@@ -24,5 +24,49 @@
 			`id` = #{id}
 	</select>
 	
+	<!-- insert는 정해진 행을 return해주기 때문에  returnType이 int로 고정이라서 지정 x -->
+	<insert id="insertReview" parameterType="map">
+		INSERT INTO
+			`new_review`
+		(	
+			`storeId`
+			, `menu`
+			, `userName`
+			, `point`
+			, `review`
+		)
+		VALUE
+		(
+			#{storeId}
+			, #{menu}
+			, #{userName}
+			, #{point}
+			, #{review}
+		)
+	
+	</insert>
+	
+	<insert id="insertReviewByObject" parameterType="com.chldbwls92.spring.ex.mybatis.domain.Review">
+		INSERT INTO
+			`new_review`
+		(	
+			`storeId`
+			, `menu`
+			, `userName`
+			, `point`
+			, `review`
+		)
+		VALUE
+		(
+			#{storeId}
+			, #{menu}
+			, #{userName}
+			, #{point}
+			, #{review}
+		)
+	<!-- domain의 멤버변수 이름과 같아서 getta를 통해서 값 얻어올 수 있음 -->
+	
+	</insert>
+	
 
 </mapper>

@@ -18,5 +18,29 @@ public class ReviewService {
 		Review review = reviewRepository.selecetReview(id);
 		return review;
 	}
+	
+	// 전달받은 리뷰 정보를 기반으로 리뷰 저장
+	public int addReview(
+				int storeId
+				, String menu
+				, String userName
+				, double point
+				, String review) {
+			
+			// 전달받은 리뷰내용으로 new_review 테이블에 insert
+			int count = reviewRepository.insertReview(storeId, menu, userName, point, review);
+			
+			return count;
+	}
+	
+	// 정달 받은 review 객체를 통해 저장
+	public int addReviewByObject(Review review) {
+		
+		// 전달받은 Review 객체로 new_review insert
+		// return해주는 것은 실행된 행의 갯수 => int
+		int count = reviewRepository.insertReviewByObject(review);
+		return count;
+		// return한 걸 그대로 return 해야된다는 게 아니라 실행된 행의 갯수 return하고싶을 때 쓰는 것
+	}
 
 }
