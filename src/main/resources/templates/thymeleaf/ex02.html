@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+</head>
+<body>
+
+	<h2>반복문</h2>
+	
+	<h3>1. 숫자 반복</h3>
+	<!-- 0 ~ 4 반복 -->
+	<!-- 향상된 for문과 같은 형태 -->
+	<div th:each="i:${#numbers.sequence(0, 4)}">
+		<span th:text="${i}"></span>
+	</div>
+		<!-- span = 줄바꿈 없이 그냥 스타일만 주고 싶을 때 쓰는 태그 -->
+		<!-- div 자체가 반복됨. 근데 거의 안 씀.list 이용함 -->
+	
+	<h3>2. 문자열 리스트 반복</h3>
+	<!-- 맨 앞에 있는 건 변수 저장하기 위한 것 -->
+	<!-- status : 반복상태를 저장한 객체
+					index, count 사용하기 유용함 -->
+	<div th:each="fruit, status:${fruitList}" >
+		<span th:text="${fruit}">과일이름</span>
+		<span th:text="|${status.index} ${status.count}|"></span>
+	</div>
+	<!-- 키 이름으로 대상 입력 -->
+
+
+	<h3>3. 맵 리스트 반복</h3>
+	<table border="1">
+		<thead>
+			<tr>
+				<th>이름</th>
+				<th>나이</th>
+				<th>취미</th>
+			</tr>
+		</thead>
+		<tbody>
+			<!-- user는 엄밀히 map(get으로 호출)이지만 key 이름만으로 호출할 수 있는 것
+					만든 후에 페이지 소스보면서 잘 짜여졌는지 보기 -->
+			<tr th:each="user:${userList}">
+				<td th:text="${user.name}">유재석</td>
+				<td th:text="${user.age}">52</td>
+				<td th:text="${user.hobby}">진행하기</td>
+			</tr>
+		</tbody>
+	</table>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js" integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+" crossorigin="anonymous"></script>
+</body>
+</html>
