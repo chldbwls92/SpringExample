@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>사용자 정보</title>
+</head>
+<body>
+	
+	<h2 th:text="${title}">사용자 정보</h2>
+
+	<table border="1">
+		<tr>
+			<th>id</th>
+			<th th:text="${result.id}">25</th>
+		</tr>
+		<tr>
+			<th>이름</th>
+			<th th:text="${result.name}">로제</th>
+		</tr>
+		<tr>
+			<th>생년월일</th>
+			<th th:text="${result.yyyymmdd}">20030723</th>
+		</tr>
+		<tr>
+			<th>이메일</th>
+			<th th:text="${result.email}">loge@gmail.com</th>
+		</tr>
+	</table>
+	<!-- 완성된 html만 클라이언트에 보여짐 -->
+
+
+</body>
+</html>
