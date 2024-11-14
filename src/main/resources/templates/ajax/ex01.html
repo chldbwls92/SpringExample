@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>AJAX</title>
+</head>
+<body>
+
+	<h2>AJAX 테스트</h2>
+	
+	<!-- 누르면 AJAX 실행되도록 -->
+	
+	
+	<label>이름 : </label><input type="text" id="nameInput">
+	<label>생년월일 : </label><input type="text" id="birthdayInput">
+	<button type="button" id="ajaxBtn">AJAX</button>
+	
+	<div>이름 : <span id="nameSpan"></span></div>
+	<div>나이 : <span id="ageSpan"></span></div>
+	<!-- 페이지이동 없이 ajax 를 이용하여 만들기~ -->
+
+
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+<script>
+	$(document).ready(function() {
+		// 메소드임
+		$("#ajaxBtn").on("click", function() {
+			
+								// value 속성
+			let name = $("#nameInput").val();
+			let birthday = $("#birthdayInput").val();
+			
+			
+			// 함수 안에 구현
+			// /ajax/person
+			// 이름과 생년월일을 전달해서, 이름과 나이를 전달받기
+			// 이미 만들어진 페이지를 사용법에 따라 전달, 처리
+			
+			// 이걸 가능하게 해주는 게 ajax 기능
+			// 우리가 작성한 코드를 통해서 요청응답 가능
+			// request에 필요한 정보세팅(type, url, data(유사 requestType))
+			$.ajax({
+				type:"get"
+				, url:"/ajax/person"
+				, data:{"name":name,"birthday":birthday}
+				, success:function(response) {
+					// response가 정상적으로 전달되었을 때 수행될 함수
+					// response를 그대로 저장하고 전달하는구나~
+					// jquery ajax 함수
+					// response로 전달된 결과는 json 문자열
+					// 문자열로 전달된 json 데이터를
+					// javascript 객체로 변환해 준다.
+					// => 문자열이 아닌 객체인 상태 => 'resonse.key이름' 입력하면 내용 얻어올 수 있음
+					console.log(response);
+					
+					$("#nameSpan").text(response.name);
+					$("#ageSpan").text(response.age);
+					
+					
+				}
+			}); 
+			
+			
+			
+		});
+		
+		
+	});
+
+</script>
+</body>
+</html>
