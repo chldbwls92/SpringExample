@@ -33,13 +33,14 @@ public class NewUserController {
 		// userService 이미 만들어놓은 기능이 있으니 사용하자
 		int count = userService.addUser(name, birthday, email, introduce);
 		
+		//json 규격으로 만들면 data로 완성
 		Map<String, String> resultMap = new HashMap<>();
 		// 성공 {"result" : "success"}
 		// 실패 {"result" : "fail"}
 		
 		if(count == 1) {
 			// 성공
-			resultMap.put("result", "successs");
+			resultMap.put("result", "success");
 		} else {
 			// 실패
 			resultMap.put("result", "fail");
@@ -49,7 +50,9 @@ public class NewUserController {
 		
 	}
 	
-	
+	// View
+	// (api)와 다른 보여지는 페이지
+	// data(api)페이지 와 view페이진
 	@GetMapping("/input")
 	public String userInput() {
 		return "ajax/userInput";

@@ -10,7 +10,7 @@
 			`new_user`
 		(
 			`name`
-			 , `yyyymmdd`
+			 , `birthday`
 			 , `email`
 			 , `introduce`
 		)

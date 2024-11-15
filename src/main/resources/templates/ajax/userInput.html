@@ -22,7 +22,7 @@
 		$("#addBtn").on("click", function() {
 			// 입력된 값 가져오기
 			let name = $("#nameInput").val();
-			let birthday = $("#birthday").val();
+			let birthday = $("#birthdayInput").val();
 			let email = $("#emailInput").val();
 			let introduce = $("#introduceInput").val();
 			
@@ -32,8 +32,44 @@
 				return; // 잘못된 값이기 때문에 stop
 			}
 			
+			if(birthday == "") {
+				alert("생년월일을 입력하세요");
+				return;
+			}
+			
+			if(email == "") {
+				alert("이메일을 입력하세요");
+				return;
+			}
+			
+			if(introduce == "") {
+				alert("자기소개를 입력하세요");
+				return;
+			}
 			// 입력된 값으로 /ajax/usr/create API를 요청한다.
-			// 과제
+			// data = 저기 링크 request?로 받은 파라미터 내용 여기 변수에 넣기
+			// response가 성공적으로 전달됐을 때 succes에서 파라미터를 통해 실행
+			$.ajax({
+				type:"post"
+				, url:"/ajax/user/create"
+				, data:{"name":name, "birthday":birthday, "email":email, "introduce":introduce}
+				, success:function(response) {
+					// 성공 {"result" : "success"}
+					// 실패 {"result" : "fail"}
+					// 원래 response는 문자열..! 그래서 substring어쩌구 해야되는데
+					// ajax에서 json인 게 판단되면 알아서 판단하고 객체 형태로 변형시켜줌
+
+					if(response.result == "success") {
+						alert("저장 성공!");
+					} else {
+						alert("저장 실패");
+					}
+				}
+				, error:function() {
+					alert("저장 에러");
+				}
+			});
+			
 		});
 		
 		
