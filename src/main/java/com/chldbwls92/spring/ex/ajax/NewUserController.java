@@ -61,12 +61,12 @@ public class NewUserController {
 	// email 전달 받고, 이미 추가된 email인지 확인
 	// data를 통해 수행되는 형태이기 때문에 api로 구성해라
 	// API (reponse만 달라)
-	@GetMapping("/duplicate-email")
-	public isDuplicateEmail( @RequestParam("email") String email) {
-		
-		
-	}
-	
+//	@GetMapping("/duplicate-email")
+//	public isDuplicateEmail(@RequestParam("email") String email) {
+//		
+//		
+//	}
+//	
 	
 	
 	
