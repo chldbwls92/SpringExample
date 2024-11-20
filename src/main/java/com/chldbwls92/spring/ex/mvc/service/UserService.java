@@ -27,5 +27,10 @@ public class UserService {
 		
 		return user;
 	}
+	
+	public boolean isDuplicateEmail(String email) {
+		// count 함수를 이용해서 조회되면 1 아니면 0이니까 count쿼리 수행
+		
+	}
 
 }
