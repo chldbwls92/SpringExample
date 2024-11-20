@@ -28,9 +28,16 @@ public class UserService {
 		return user;
 	}
 	
-//	public boolean isDuplicateEmail(String email) {
-//		// count 함수를 이용해서 조회되면 1 아니면 0이니까 count쿼리 수행
-//		
-//	}
+	public boolean isDuplicateEmail(String email) {
+		// count 함수를 이용해서 조회되면 1 아니면 0이니까 count쿼리 수행
+		int count = userRepository.countByEmail(email);
+		// count return no. boolean return이기 때문에 여기서 직접 판단해서 내보내야됨
+		if(count > 0) {
+			return true;
+		} else {
+			return false;
+		}
+		
+	}
 
 }

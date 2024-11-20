@@ -58,15 +58,34 @@ public class NewUserController {
 		return "ajax/userInput";
 	}
 	
+	
+	
+	
 	// email 전달 받고, 이미 추가된 email인지 확인
 	// data를 통해 수행되는 형태이기 때문에 api로 구성해라
 	// API (reponse만 달라)
-//	@GetMapping("/duplicate-email")
-//	public isDuplicateEmail(@RequestParam("email") String email) {
-//		
-//		
-//	}
-//	
+	@GetMapping("/duplicate-email")
+	public Map<String, Boolean> isDuplicateEmail(@RequestParam("email") String email) {
+		
+		// true false로 return 해주는 service
+		boolean isDuplicate = userService.isDuplicateEmail(email);
+		
+		// 결과 전달 (문자열(json)으로 전달
+		// 중복 됨 {"isDuplicate":true}
+		// 중복 안 됨 {isDuplicate":false}
+		// boolean type에 대한 mapper class는 Boolean
+		Map<String, Boolean> resultMap = new HashMap<>();
+		// boolean 변수는 이렇게 활용함 isDuplicate == true x
+		if(isDuplicate) {
+			resultMap.put("isDuplicate", true);
+		} else {
+			resultMap.put("isDuplicate", false);
+		}
+		
+		return resultMap;
+		
+	}
+	
 	
 	
 	

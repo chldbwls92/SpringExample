@@ -42,6 +42,15 @@
 			1
 	</select>
 	
+	<select id="countByEmail" parameterType="string" resultType="int">
+		SELECT
+			count(*)
+		FROM
+			`new_user`
+		WHERE
+			`email` = #{email}
+	</select>
+	
 	
 
 
