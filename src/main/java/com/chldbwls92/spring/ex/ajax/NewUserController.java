@@ -64,6 +64,8 @@ public class NewUserController {
 	// email 전달 받고, 이미 추가된 email인지 확인
 	// data를 통해 수행되는 형태이기 때문에 api로 구성해라
 	// API (reponse만 달라)
+	// responseBody 안 적으면 얘가 html을 찾으려고 해서 template오류가 발생해!
+	@ResponseBody
 	@GetMapping("/duplicate-email")
 	public Map<String, Boolean> isDuplicateEmail(@RequestParam("email") String email) {
 		
