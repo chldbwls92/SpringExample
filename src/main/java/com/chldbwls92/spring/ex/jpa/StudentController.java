@@ -1,5 +1,8 @@
 package com.chldbwls92.spring.ex.jpa;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -7,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.chldbwls92.spring.ex.jpa.domain.Student;
+import com.chldbwls92.spring.ex.jpa.repository.StudentRepository;
 import com.chldbwls92.spring.ex.jpa.service.StudentService;
 
 @RequestMapping("/jpa/student")
@@ -15,6 +19,11 @@ public class StudentController {
 	
 	@Autowired
 	private StudentService studentService;
+	
+	// 절대 controller에서 repository 활용 금지!!!!!
+	// 임시로 사용하는 것 !!!!!
+	@Autowired
+	private StudentRepository studentRepository;
 	
 	
 	// create, update, delete
@@ -51,6 +60,38 @@ public class StudentController {
 		studentService.deletestudent(3);
 		
 		return "삭제 성공!!";
+	}
+	
+	
+	@ResponseBody
+	@GetMapping("/find")
+	public List<Student> findStudent() {
+		
+		List<Student> studentList = null;
+		
+		// 모든 행 조회
+//		List<Student> studentList = studentRepository.findAll();
+		
+		// 모든 행을 id 컬럼 내림차순으로 조회
+//		studentList = studentRepository.findAllByOrderByIdDesc();
+		
+		// id top 2 내림차순 조회
+//		studentList = studentRepository.findTop2ByOrderByIdDesc();
+		
+//		studentList = studentRepository.findByName("최유진");
+		
+		List<String> nameList = new ArrayList<>();
+		nameList.add("유재석");
+		nameList.add("조세호");
+//		studentList = studentRepository.findByNameIn(nameList);
+		
+//		studentList = studentRepository.findByEmailContaining("gmail");
+		
+//		studentList = studentRepository.findByIdBetweenOrderByIdDesc(2, 5);
+		
+		studentList = studentRepository.selectByDreamJob("모델");
+		
+		return studentList;
 	}
 	
 	
